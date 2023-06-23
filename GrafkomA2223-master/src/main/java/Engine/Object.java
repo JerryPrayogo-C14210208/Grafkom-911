@@ -47,7 +47,6 @@ public class Object extends ShaderProgram{
         this.centerPoint = centerPoint;
     }
 
-
     List<Vector3f> verticesColor;
     public Object(List<ShaderModuleData> shaderModuleDataList
             , List<Vector3f> vertices
@@ -56,27 +55,27 @@ public class Object extends ShaderProgram{
         this.vertices = vertices;
 //        setupVAOVBO();
         uniformsMap = new UniformsMap(getProgramId());
-        uniformsMap.createUniform(
-                "uni_color");
-        uniformsMap.createUniform(
-                "model");
-        uniformsMap.createUniform(
-                "projection");
-        uniformsMap.createUniform(
-                "view");
+//        uniformsMap.createUniform(
+//                "uni_color");
+//        uniformsMap.createUniform(
+//                "model");
+//        uniformsMap.createUniform(
+//                "projection");
+//        uniformsMap.createUniform(
+//                "view");
         this.color = color;
         model = new Matrix4f().identity();
         childObject = new ArrayList<>();
         centerPoint = Arrays.asList(0f,0f,0f);
     }
-//    public Object(List<ShaderModuleData> shaderModuleDataList,
-//                  List<Vector3f> vertices,
-//                  List<Vector3f> verticesColor) {
-//        super(shaderModuleDataList);
-//        this.vertices = vertices;
-//        this.verticesColor = verticesColor;
-//        setupVAOVBOWithVerticesColor();
-//    }
+    public Object(List<ShaderModuleData> shaderModuleDataList,
+                  List<Vector3f> vertices,
+                  List<Vector3f> verticesColor) {
+        super(shaderModuleDataList);
+        this.vertices = vertices;
+        this.verticesColor = verticesColor;
+        setupVAOVBOWithVerticesColor();
+    }
     public void setupVAOVBO(){
         //set vao
         vao = glGenVertexArrays();
@@ -149,8 +148,8 @@ public class Object extends ShaderProgram{
         drawSetup(camera, projection);
         // Draw the vertices
         //optional
-        glLineWidth(1); //ketebalan garis
-        glPointSize(1); //besar kecil vertex
+        glLineWidth(10); //ketebalan garis
+        glPointSize(10); //besar kecil vertex
         //wajib
         //GL_LINES
         //GL_LINE_STRIP
@@ -158,7 +157,7 @@ public class Object extends ShaderProgram{
         //GL_TRIANGLES
         //GL_TRIANGLE_FAN
         //GL_POINT
-        glDrawArrays(GL_LINE_STRIP,
+        glDrawArrays(GL_TRIANGLES,
                 0,
                 vertices.size());
         for(Object child:childObject){

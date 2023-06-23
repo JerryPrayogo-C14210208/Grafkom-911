@@ -1,21 +1,6 @@
 package Engine;
-
-import Engine.*;
-import Engine.Object;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
-import org.lwjgl.opengl.GL;
-
-import javax.management.modelmbean.ModelMBean;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.opengl.GL30.*;
 
 public class OBJLoader {
     public static Model loadModel(File f) throws FileNotFoundException, IOException{

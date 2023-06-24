@@ -24,6 +24,7 @@ public class Sphere extends Circle{
     List<Vector3f> normal = new ArrayList<>();
     int nbo;
     int choice;
+    String fileobj;
     public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
                   int sectorCount,int stackCount, int choice) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
@@ -40,12 +41,30 @@ public class Sphere extends Circle{
         }
         setupVAOVBO();
     }
+
+    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
+                  int sectorCount,int stackCount, int choice, String fileobj) {
+        super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
+        this.radiusZ = radiusZ;
+        this.stackCount = stackCount;
+        this.sectorCount = sectorCount;
+        this.choice = choice;
+        this.fileobj = fileobj;
+        if(choice == 1) {
+            createBoxVertices();
+        }
+//        createSphere();
+        else if(choice == 2) {
+            setUpDisplayLists();
+        }
+        setupVAOVBO();
+    }
     public void setUpDisplayLists(){
         vertices.clear();
         {
             Model m = null;
             try {
-                m = OBJLoader.loadModel(new File("src/main/java/Engine/A380.obj"));
+                m = OBJLoader.loadModel(new File(fileobj));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -359,10 +378,10 @@ public class Sphere extends Circle{
                 false,
                 0, 0);
 //        uniformsMap.setUniform("dirLight.position",new Vector3f(-0.2f,30.0f,-0.3f));
-        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,10.0f,-0.3f));
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,100.0f,0.3f));
         uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
         uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
-        uniformsMap.setUniform("dirLight.specular", new Vector3f(0.0f,1.0f,0.0f));
+        uniformsMap.setUniform("dirLight.specular", new Vector3f(1.0f,1.0f,1.0f));
 
 //            System.out.println(centerPoint);
 

@@ -69,7 +69,8 @@ public class Main {
                 5.125f,
                 36,
                 18,
-                2
+                2,
+                "src/main/java/Engine/A380.obj"
         ));
         objects.get(0).translateObject(0.0f,-10f,0.0f);
 
@@ -88,7 +89,13 @@ public class Main {
             objects.get(1).translateObject(-0.1f, 0f, 0f);
         }
         if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
-            objects.get(1).translateObject(0.1f, 0f, -0.1f);
+            objects.get(1).translateObject(0.1f, 0f, 0.0f);
+        }
+        if(window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)){
+            objects.get(1).translateObject(0f, -0.1f, 0.0f);
+        }
+        if(window.isKeyPressed(GLFW_KEY_SPACE)){
+            objects.get(1).translateObject(0.0f, 0.1f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_W)) {
             camera.moveForward(move);

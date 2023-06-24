@@ -33,6 +33,11 @@ public class OBJLoader {
                 float y = Float.valueOf(line.split(" ")[2]);
                 float z = Float.valueOf(line.split(" ")[3]);
                 m.normals.add(new Vector3f(x, y, z));
+            } else if(line.startsWith("vt ")){
+                float x = Float.valueOf(line.split(" ")[1]);
+                float y = Float.valueOf(line.split(" ")[2]);
+//                float z = Float.valueOf(line.split(" ")[3]);
+                m.texture.add(new Vector2f(x, y));
             }else if(line.startsWith("f ")) {
                 Vector3f vertexIndices = new Vector3f(
                         Integer.parseInt(line.split(" ")[1].split("/")[0]),

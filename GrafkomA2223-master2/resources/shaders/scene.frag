@@ -1,6 +1,7 @@
 #version 330
 //Directional Light
 struct DirLight{
+    vec3 position;
     vec3 direction;
 
     vec3 ambient;
@@ -21,7 +22,7 @@ struct PointLight{
     vec3 specular;
 };
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 5
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 
 struct SpotLight{
@@ -49,12 +50,12 @@ in vec3 Normal;
 in vec3 FragPos;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir){
-    vec3 lightDir = normalize(-light.direction);
+    vec3 lightDir = normalize(light.direction);
 
     //diffuse
-    float diff = max(dot(normal,lightDir),0.0);
+    float diff = max(dot(normal,lightDir),0.2);
     //specular
-    vec3 reflectDir = reflect(-lightDir,normal);
+    vec3 reflectDir = reflect(lightDir,normal);
     float spec = pow(max(dot(viewDir, reflectDir),0.0),64.0);
 
     vec3 ambient = light.ambient;
@@ -88,7 +89,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 
     //diffuse shading
     vec3 lightDir = normalize(light.position - FragPos);
-    float diff = max(dot(normal, lightDir), 0.0);
+    float diff = max(dot(normal, lightDir), 1.0);
 
     //specular shading
     vec3 reflectDir = reflect(-lightDir, normal);
@@ -120,12 +121,14 @@ void main()
     vec3 viewDir = normalize(viewPos - FragPos);
     //Directional Light
     vec3 result = CalcDirLight(dirLight,normal,viewDir);
-    //Point Lights
+//    vec3 result;
+
+    //    Point Lights
     for(int i = 0;i<NR_POINT_LIGHTS;i++){
         result += CalcPointLight(pointLights[i],normal,FragPos,viewDir);
     }
-    //Spot Light
-    result += CalcSpotLight(spotLight,normal,FragPos,viewDir);
+//    //Spot Light
+//    result += CalcSpotLight(spotLight,normal,FragPos,viewDir);
 
     fragColor = vec4(result * vec3(uni_color),1.0);
 }

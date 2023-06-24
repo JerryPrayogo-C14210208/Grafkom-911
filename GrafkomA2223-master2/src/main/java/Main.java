@@ -37,8 +37,8 @@ public class Main {
         window.init();
         GL.createCapabilities();
         mouseInput = window.getMouseInput();
-        camera.setPosition(0,0,1.0f);
-        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(30.0f));
+        camera.setPosition(0,0,10.0f);
+        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(0.0f));
         //code
         objects.add(new Sphere(
                 Arrays.asList(
@@ -48,18 +48,48 @@ public class Main {
                 new ArrayList<>(),
                 new Vector4f(0.0f,1.0f,0.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
-                0.125f,
-                0.125f,
-                0.125f,
+                200.125f,
+                5.125f,
+                200.125f,
                 36,
-                18
+                18,
+                1
         ));
 
+        objects.add(new Sphere(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                5.125f,
+                5.125f,
+                5.125f,
+                36,
+                18,
+                2
+        ));
+        objects.get(0).translateObject(0.0f,-10f,0.0f);
 
     }
 
     public void input(){
         float move = 0.1f;
+        if (window.isKeyPressed(GLFW_KEY_UP)) {
+            objects.get(1).translateObject(0f, 0f, -0.1f);
+//            System.out.println(objects.get(1).getCenterPoint());
+        }
+        if (window.isKeyPressed(GLFW_KEY_DOWN)) {
+            objects.get(1).translateObject(0f, 0f, 0.1f);
+        }
+        if (window.isKeyPressed(GLFW_KEY_LEFT)) {
+            objects.get(1).translateObject(-0.1f, 0f, 0f);
+        }
+        if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
+            objects.get(1).translateObject(0.1f, 0f, -0.1f);
+        }
         if (window.isKeyPressed(GLFW_KEY_W)) {
             camera.moveForward(move);
         }

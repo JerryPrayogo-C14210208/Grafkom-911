@@ -23,15 +23,21 @@ public class Sphere extends Circle{
     int sectorCount;
     List<Vector3f> normal = new ArrayList<>();
     int nbo;
+    int choice;
     public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
-                  int sectorCount,int stackCount) {
+                  int sectorCount,int stackCount, int choice) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
         this.radiusZ = radiusZ;
         this.stackCount = stackCount;
         this.sectorCount = sectorCount;
-//        createBoxVertices();
+        this.choice = choice;
+        if(choice == 1) {
+        createBoxVertices();
+        }
 //        createSphere();
-        setUpDisplayLists();
+        else if(choice == 2) {
+            setUpDisplayLists();
+        }
         setupVAOVBO();
     }
     public void setUpDisplayLists(){
@@ -352,46 +358,50 @@ public class Sphere extends Circle{
                 GL_FLOAT,
                 false,
                 0, 0);
-
-        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));
+//        uniformsMap.setUniform("dirLight.position",new Vector3f(-0.2f,30.0f,-0.3f));
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,10.0f,-0.3f));
         uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
         uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
-        uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f,0.5f,0.5f));
-        //posisi pointLight
-        Vector3f[] _pointLightPositions = {
+        uniformsMap.setUniform("dirLight.specular", new Vector3f(0.0f,1.0f,0.0f));
+
+//            System.out.println(centerPoint);
+
+            //posisi pointLight
+            Vector3f[] _pointLightPositions = {
 //            new Vector3f(0.7f, 0.2f, 2.0f),
 //            new Vector3f(2.3f, -3.3f, -4.0f),
 //            new Vector3f(-4.0f, 2.0f, -12.0f),
 //            new Vector3f(0.0f, 0.0f, -3.0f)
 
-                new Vector3f(0.7f, 0.5f, 1.0f),
-                new Vector3f(0.0f, 0.0f, 0.0f),
-                new Vector3f(0.0f, 0.0f, 0.0f),
-                new Vector3f(0.0f, 0.0f, 0.0f)
-        };
-        for(int i = 0;i< _pointLightPositions.length;i++){
-            uniformsMap.setUniform("pointLights["+ i +"].position",_pointLightPositions[i]);
-            uniformsMap.setUniform("pointLights["+ i +"].ambient", new Vector3f(0.05f,0.05f,0.05f));
-            uniformsMap.setUniform("pointLights["+ i +"].diffuse", new Vector3f(0.8f,0.8f,0.8f));
-            uniformsMap.setUniform("pointLights["+ i +"].specular", new Vector3f(1.0f,1.0f,1.0f));
-            uniformsMap.setUniform("pointLights["+ i +"].constant",1.0f );
-            uniformsMap.setUniform("pointLights["+ i +"].linear", 0.09f);
-            uniformsMap.setUniform("pointLights["+ i +"].quadratic", 0.032f);
+                    new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 20.0f),
+                    new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 10.0f),
+                    new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 0.0f),
+                    new Vector3f(0.7f, -10.2f, centerPoint.get(2) - 10.0f),
+                    new Vector3f(0.7f, -10.2f, centerPoint.get(2) - 20.0f),
+            };
+            for (int i = 0; i < _pointLightPositions.length; i++) {
+                uniformsMap.setUniform("pointLights[" + i + "].position", _pointLightPositions[i]);
+                uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+                uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(-0.8f, -0.8f, -0.8f));
+                uniformsMap.setUniform("pointLights[" + i + "].specular", new Vector3f(.0f, .0f, .0f));
+                uniformsMap.setUniform("pointLights[" + i + "].constant", 1.0f);
+                uniformsMap.setUniform("pointLights[" + i + "].linear", 0.09f);
+                uniformsMap.setUniform("pointLights[" + i + "].quadratic", 0.032f);
+            }
 
-        }
-
+//
         //spotlight
 //        uniformsMap.setUniform("spotLight.position",camera.getPosition());
-        uniformsMap.setUniform("spotLight.direction",camera.getDirection());
-        uniformsMap.setUniform("spotLight.ambient",new Vector3f(0.0f,0.0f,0.0f));
-        uniformsMap.setUniform("spotLight.diffuse",new Vector3f(1.0f,1.0f,1.0f));
-        uniformsMap.setUniform("spotLight.specular",new Vector3f(1.0f,1.0f,1.0f));
-        uniformsMap.setUniform("spotLight.constant",1.0f);
-        uniformsMap.setUniform("spotLight.linear",0.09f);
-        uniformsMap.setUniform("spotLight.quadratic",0.032f);
-        uniformsMap.setUniform("spotLight.cutOff",(float)Math.cos(Math.toRadians(12.5f)));
-        uniformsMap.setUniform("spotLight.outerCutOff",(float)Math.cos(Math.toRadians(12.5f)));
-        uniformsMap.setUniform("viewPos",camera.getPosition());
+//        uniformsMap.setUniform("spotLight.direction",camera.getDirection());
+//        uniformsMap.setUniform("spotLight.ambient",new Vector3f(0.0f,0.0f,0.0f));
+//        uniformsMap.setUniform("spotLight.diffuse",new Vector3f(1.0f,1.0f,1.0f));
+//        uniformsMap.setUniform("spotLight.specular",new Vector3f(1.0f,1.0f,1.0f));
+//        uniformsMap.setUniform("spotLight.constant",1.0f);
+//        uniformsMap.setUniform("spotLight.linear",0.09f);
+//        uniformsMap.setUniform("spotLight.quadratic",0.032f);
+//        uniformsMap.setUniform("spotLight.cutOff",(float)Math.cos(Math.toRadians(12.5f)));
+//        uniformsMap.setUniform("spotLight.outerCutOff",(float)Math.cos(Math.toRadians(12.5f)));
+//        uniformsMap.setUniform("viewPos",camera.getPosition());
     }
 //    public void draw(){
 //        drawSetup();

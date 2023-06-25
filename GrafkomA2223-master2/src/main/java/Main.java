@@ -37,7 +37,7 @@ public class Main {
         window.init();
         GL.createCapabilities();
         mouseInput = window.getMouseInput();
-        camera.setPosition(0,0,10.0f);
+        camera.setPosition(0,0,0.0f);
         camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(0.0f));
         //code
         objects.add(new Sphere(
@@ -46,10 +46,10 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                new Vector4f(1.0f,0.0f,0.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
                 200.125f,
-                5.125f,
+                200.125f,
                 200.125f,
                 36,
                 18,
@@ -62,6 +62,23 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
                 new ArrayList<>(),
+                new Vector4f(0.0f,0.0f,1.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                5.125f,
+                5.125f,
+                5.125f,
+                36,
+                18,
+                3,
+                "src/main/java/Engine/A380.obj",
+                "src/main/java/Engine/A380.mtl"
+        ));
+        objects.add(new Sphere(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
                 new Vector4f(0.0f,1.0f,0.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
                 5.125f,
@@ -69,33 +86,34 @@ public class Main {
                 5.125f,
                 36,
                 18,
-                2,
-                "src/main/java/Engine/A380.obj"
+                1,
+                "src/main/java/Engine/A380.obj",
+                "src/main/java/Engine/A380.mtl"
         ));
-        objects.get(0).translateObject(0.0f,-10f,0.0f);
+
 
     }
 
     public void input(){
         float move = 0.1f;
         if (window.isKeyPressed(GLFW_KEY_UP)) {
-            objects.get(1).translateObject(0f, 0f, -0.1f);
+            objects.get(2).translateObject(0f, 0f, -0.1f);
 //            System.out.println(objects.get(1).getCenterPoint());
         }
         if (window.isKeyPressed(GLFW_KEY_DOWN)) {
-            objects.get(1).translateObject(0f, 0f, 0.1f);
+            objects.get(2).translateObject(0f, 0f, 0.1f);
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT)) {
-            objects.get(1).translateObject(-0.1f, 0f, 0f);
+            objects.get(2).translateObject(-0.1f, 0f, 0f);
         }
         if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
-            objects.get(1).translateObject(0.1f, 0f, 0.0f);
+            objects.get(2).translateObject(0.1f, 0f, 0.0f);
         }
         if(window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)){
-            objects.get(1).translateObject(0f, -0.1f, 0.0f);
+            objects.get(2).translateObject(0f, -0.1f, 0.0f);
         }
         if(window.isKeyPressed(GLFW_KEY_SPACE)){
-            objects.get(1).translateObject(0.0f, 0.1f, 0.0f);
+            objects.get(2).translateObject(0.0f, 0.1f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_W)) {
             camera.moveForward(move);
@@ -139,6 +157,7 @@ public class Main {
 //            for(Object object: objectsPointsControl){
 //                object.drawLine();
 //            }
+
 
             // Restore state
             glDisableVertexAttribArray(0);

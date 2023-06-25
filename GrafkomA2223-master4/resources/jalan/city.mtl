@@ -1,0 +1,71 @@
+# Blender MTL File: 'None'
+# Material Count: 6
+
+newmtl base
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Bump C:\\Program Files\\Blender Foundation\\Blender 3.5
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+
+newmtl details
+Ns 494.245301
+Ka 0.039464 0.039464 0.039464
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+
+newmtl fasades
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Bump -bm 0.497958 C:\\Program Files\\Blender Foundation\\Blender 3.5
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+
+newmtl fasades2
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+
+newmtl rails
+Ns 209.834605
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+
+newmtl vehicles
+Ns 665.985041
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:\\Program Files\\Blender Foundation\\Blender 3.5
+map_Ke C:\\Program Files\\Blender Foundation\\Blender 3.5

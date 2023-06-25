@@ -5,7 +5,6 @@ import org.joml.Vector4f;
 
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Circle extends Object {
@@ -18,7 +17,7 @@ public class Circle extends Object {
         this.radiusX = radiusX;
         this.radiusY = radiusY;
         createCircle();
-//        setupVAOVBO();
+        setupVAOVBO();
     }
     public double degToRad(float degree){
         return (degree * Math.PI / (float) 180);

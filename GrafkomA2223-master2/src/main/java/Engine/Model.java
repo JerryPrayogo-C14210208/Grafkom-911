@@ -11,7 +11,6 @@ public class Model {
     public List<Vector3f> normals = new ArrayList<Vector3f>();
     public List<Vector2f> texture = new ArrayList<>() ;
     public List<Face> faces = new ArrayList<Face>();
-
     public Model(){
 
     }

@@ -11,6 +11,7 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 public class UniformsMap {
     private final Map<String, Integer> uniforms;
+    private int programId;
 
     public UniformsMap(int programId) {
         uniforms = new HashMap<>();
@@ -23,10 +24,19 @@ public class UniformsMap {
                 String key = glGetActiveUniform(programId, i, glGetProgrami(programId, GL_ACTIVE_UNIFORM_MAX_LENGTH), tempBuffer, tempBuffer);
 
                 int location = glGetUniformLocation(programId, key);
-
+                this.programId = programId;
                 uniforms.put(key, location);
             }
         }
+    }
+
+    public void createUniform(String uniformName) {
+        int uniformLocation = glGetUniformLocation(programId, uniformName);
+        if (uniformLocation < 0) {
+            throw new RuntimeException("Could not find uniform [" + uniformName + "] in shader program [" +
+                    programId + "]");
+        }
+        uniforms.put(uniformName, uniformLocation);
     }
 
     private int getUniformLocation(String uniformName) {

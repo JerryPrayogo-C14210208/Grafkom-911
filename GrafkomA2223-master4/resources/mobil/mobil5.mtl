@@ -1,0 +1,12 @@
+# Blender 3.5.1 MTL File: 'kota.blend'
+# www.blender.org
+
+newmtl vehicles.001
+Ns 665.985107
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd D:/grafkom_UAS_boing999/Grafkom-911-main/GrafkomA2223-master2/resources/jalan/C:/Program Files/Blender Foundation/Blender 3.5
+map_Ke D:/grafkom_UAS_boing999/Grafkom-911-main/GrafkomA2223-master2/resources/jalan/C:/Program Files/Blender Foundation/Blender 3.5

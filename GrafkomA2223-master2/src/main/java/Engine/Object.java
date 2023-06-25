@@ -118,7 +118,6 @@ public class Object extends ShaderProgram{
                 GL_FLOAT,
                 false,
                 0, 0);
-
     }
     public void drawSetupWithVerticesColor(){
         bind();

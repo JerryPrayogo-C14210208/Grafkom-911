@@ -379,35 +379,40 @@ public class Sphere extends Circle{
                 GL_FLOAT,
                 false,
                 0, 0);
-        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f, -100.0f, 0.3f));
-        uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f, 0.05f, 0.05f));
-        uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.2f, 0.2f, 0.2f));
-        uniformsMap.setUniform("dirLight.specular", new Vector3f(1.0f, 1.0f, 1.0f));
+
         if(spherename == "pesawat") {
+            uniformsMap.setUniform("dirLight.direction", new Vector3f(3.2f, -1.0f, 3.3f));
+            uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+            uniformsMap.setUniform("dirLight.diffuse", new Vector3f(.2f, .2f, .2f));
+            uniformsMap.setUniform("dirLight.specular", new Vector3f(0.0f, 0.0f, 0.0f));
 //            System.out.println(centerPoint.get(0)+" " + centerPoint.get(1)+ " " + centerPoint.get(2));
             Vector3f[] _pointLightPositions = {
-                    new Vector3f(-120, 300,  -430),
-                    new Vector3f(-120, 300,  -330),
-                    new Vector3f(-320, 100,  -130),
-                    new Vector3f(-220, 100,  -130),
-                    new Vector3f(-120, 300,  -130)
+                    new Vector3f(-120, -300,  -430),
+                    new Vector3f(-120, -300,  -330),
+                    new Vector3f(-320, -100,  -130),
+                    new Vector3f(-220, -100,  -130),
+                    new Vector3f(-120, -300,  -130)
 
 //            new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 20.0f),
 //            new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 10.0f),
-//            new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 0.0f),w
+//            new Vector3f(0.7f, -10.2f, centerPoint.get(2) + 0.0f),
 //            new Vector3f(0.7f, -10.2f, centerPoint.get(2) - 10.0f),
 //            new Vector3f(0.7f, -10.2f, centerPoint.get(2) - 20.0f),
             };
             for (int i = 0; i < _pointLightPositions.length; i++) {
                 uniformsMap.setUniform("pointLights[" + i + "].position", _pointLightPositions[i]);
-                uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(5f, 5f, 5f));
-                uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(10000.8f, 10000.8f, 10000.8f));
+                uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+                uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(20.8f, 20.8f, 20.8f));
                 uniformsMap.setUniform("pointLights[" + i + "].specular", new Vector3f(1.0f, 1.0f, 1.0f));
                 uniformsMap.setUniform("pointLights[" + i + "].constant", 1.0f);
                 uniformsMap.setUniform("pointLights[" + i + "].linear", 0.09f);
                 uniformsMap.setUniform("pointLights[" + i + "].quadratic", 0.032f);
             }
         }else if(spherename == "kota"){
+            uniformsMap.setUniform("dirLight.direction", new Vector3f(-3.2f, -1.0f, -3.3f));
+            uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+            uniformsMap.setUniform("dirLight.diffuse", new Vector3f(.4f, .4f, .4f));
+            uniformsMap.setUniform("dirLight.specular", new Vector3f(0.0f, 0.0f, 0.0f));
             //posisi pointLight
             Vector3f[] _pointLightPositions = {
             new Vector3f(0.7f, 0.2f, 2.0f),
@@ -432,6 +437,10 @@ public class Sphere extends Circle{
                 uniformsMap.setUniform("pointLights[" + i + "].quadratic", 0.032f);
             }
         }else if(spherename == "gedung"){
+            uniformsMap.setUniform("dirLight.direction", new Vector3f(-5.2f, -5.0f, -3.3f));
+            uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+            uniformsMap.setUniform("dirLight.diffuse", new Vector3f(.4f, .4f, .4f));
+            uniformsMap.setUniform("dirLight.specular", new Vector3f(0.7f, 0.7f, 0.7f));
             //posisi pointLight
             Vector3f[] _pointLightPositions = {
 //            new Vector3f(0.7f, 0.2f, 2.0f),
@@ -440,7 +449,7 @@ public class Sphere extends Circle{
 //            new Vector3f(-4.0f, 2.0f, -12.0f),
 //            new Vector3f(0.0f, 0.0f, -3.0f)
 
-                    new Vector3f(-10.0f, 200.0f, -10.0f),
+                    new Vector3f(-63.0f, 70.0f, -30.0f),
                     new Vector3f(-10.0f, 70.0f, -10.0f),
                     new Vector3f(-300.0f, -100070.0f, 0.0f),
                     new Vector3f(0.0f, -1000000.0f, 0.0f),
@@ -448,8 +457,8 @@ public class Sphere extends Circle{
             };
             for (int i = 0; i < _pointLightPositions.length; i++) {
                 uniformsMap.setUniform("pointLights[" + i + "].position", _pointLightPositions[i]);
-                uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(10.5f, 10.5f, 10.5f));
-                uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(10000.5f, 10000.5f, 10000.5f));
+                uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+                uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(0.5f, 0.5f, 0.5f));
                 uniformsMap.setUniform("pointLights[" + i + "].specular", new Vector3f(0.0f, 0.0f, 0.0f));
                 uniformsMap.setUniform("pointLights[" + i + "].constant", 1.0f);
                 uniformsMap.setUniform("pointLights[" + i + "].linear", 0.09f);
